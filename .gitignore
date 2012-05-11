@@ -1,0 +1,6 @@
+syntax: glob
+.classpath
+.project
+.metadata
+.settings
+target
