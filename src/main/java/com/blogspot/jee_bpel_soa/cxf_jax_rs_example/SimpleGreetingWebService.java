@@ -3,6 +3,7 @@ package com.blogspot.jee_bpel_soa.cxf_jax_rs_example;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
@@ -33,8 +34,9 @@ public class SimpleGreetingWebService {
 			@PathParam("state") String state,
 			@PathParam("params") String paramsAsString,
 			@PathParam("params") List<PathSegment> paramsAsList,
-			@Context HttpServletRequest request) {
-		return "response from application " + request.getContextPath() + " " + sayHi(name, state) + " You like to pass params? " 
+			@Context HttpServletRequest request,
+			@Context HttpServletResponse response) {
+		return "response from application " + request.getContextPath() + " response injected? " + (response != null)  + " " + sayHi(name, state) + " You like to pass params? " 
 				+ paramsAsString;
 	}
 }
