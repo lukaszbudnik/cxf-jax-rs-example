@@ -2,10 +2,12 @@ package com.blogspot.jee_bpel_soa.cxf_jax_rs_example;
 
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
+import javax.ws.rs.core.Context;
 import javax.ws.rs.core.PathSegment;
 
 @Path("/greetings")
@@ -30,8 +32,9 @@ public class SimpleGreetingWebService {
 	public String sayHi(@PathParam("name") String name,
 			@PathParam("state") String state,
 			@PathParam("params") String paramsAsString,
-			@PathParam("params") List<PathSegment> paramsAsList) {
-		return sayHi(name, state) + " You like to pass params? "
+			@PathParam("params") List<PathSegment> paramsAsList,
+			@Context HttpServletRequest request) {
+		return "response from application " + request.getContextPath() + " " + sayHi(name, state) + " You like to pass params? " 
 				+ paramsAsString;
 	}
 }
